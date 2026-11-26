@@ -1,0 +1,32 @@
+name: Sync LeetCode and Codeforces
+
+on:
+  schedule:
+    - cron: '0 18 * * *' # Runs daily at 11:30 PM IST
+  workflow_dispatch:       # Allows you to run it manually anytime
+
+permissions:
+  contents: write
+
+jobs:
+  sync-codeforces:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sync Codeforces Submissions
+        uses: mihir-m-gandhi/codeforces-sync@main
+        with:
+          handle: ${{ secrets.CODEFORCES_HANDLE }}
+          github_token: ${{ secrets.GH_TOKEN }}
+
+  sync-leetcode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sync LeetCode Submissions
+        uses: joshcai/leetcode-sync@v1.5
+        with:
+          github-token: ${{ secrets.GH_TOKEN }}
+          leetcode-csrf-token: ""
+          leetcode-session: ""
+          destination-folder: "LeetCode"
