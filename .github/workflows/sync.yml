@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Sync Codeforces Submissions
-        uses: mihir-m-gandhi/codeforces-sync@main
+        uses: MontassarBr/codeforces-sync@main
         with:
           handle: ${{ secrets.CODEFORCES_HANDLE }}
           github_token: ${{ secrets.GH_TOKEN }}
